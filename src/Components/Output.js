@@ -34,7 +34,12 @@ const Output = function ({
               rgba(255, 255, 255, 0) 80%
             );
             animation: shine 1s infinite;
-          }
+        }
+        @keyframes shine {
+            to {
+              left: 100%;
+            }
+        }
     `;
   };
   return (
