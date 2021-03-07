@@ -128,12 +128,18 @@ class ShapeList {
     );
   }
 
-  parseStyle() {
+  parseStyle(trim = false) {
     let backgroundImage = [];
     let backgroundPosition = [];
     let backgroundSize = [];
+    const {
+      anchor: { lt },
+      width,
+      height,
+    } = this.getSpaceTakenUp(this.shapes);
+    const trimGap = trim ? { x: 0, y: 0 } : lt;
     this.shapes.forEach((shape) => {
-      const style = shape.parseStyle();
+      const style = shape.parseStyle(trim ? lt : {});
       backgroundImage.unshift(style.backgroundImage);
       backgroundPosition.unshift(style.backgroundPosition);
       backgroundSize.unshift(style.backgroundSize);
@@ -149,6 +155,8 @@ class ShapeList {
         backgroundPosition: backgroundPosition.join(","),
         backgroundSize: backgroundSize.join(","),
       },
+      width: `${width + trimGap.x}px`,
+      height: `${height + trimGap.y}px`,
     };
   }
   render(ctx) {

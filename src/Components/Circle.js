@@ -159,11 +159,11 @@ class Circle extends Base {
     }
     ctx.restore();
   }
-  parseStyle() {
+  parseStyle({ x = 0, y = 0 } = {}) {
     return {
       backgroundImage: `radial-gradient( circle ${this.radius}px at ${this.radius}px ${this.radius}px, ${this.color} 100%, transparent 0 )`,
-      backgroundPosition: `${this.pos.x - this.radius}px ${
-        this.pos.y - this.radius
+      backgroundPosition: `${this.pos.x - this.radius - x}px ${
+        this.pos.y - this.radius - y
       }px`,
       backgroundSize: `${this.radius * 2}px ${this.radius * 2}px`,
     };

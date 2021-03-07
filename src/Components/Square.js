@@ -154,10 +154,10 @@ class Square extends Base {
     ctx.stroke();
     ctx.restore();
   }
-  parseStyle() {
+  parseStyle({ x = 0, y = 0 } = {}) {
     return {
       backgroundImage: `linear-gradient( ${this.color} 100%, transparent 0 )`,
-      backgroundPosition: `${this.pos.x}px ${this.pos.y}px`,
+      backgroundPosition: `${this.pos.x - x}px ${this.pos.y - y}px`,
       backgroundSize: `${this.width}px ${this.height}px`,
     };
   }
